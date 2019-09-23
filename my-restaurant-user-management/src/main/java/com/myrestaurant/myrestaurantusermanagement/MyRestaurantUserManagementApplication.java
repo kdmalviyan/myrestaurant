@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.myrestaurant")
+@ComponentScan(basePackages = "com.myrestaurant.*")
 public class MyRestaurantUserManagementApplication {
 
 	public static void main(String[] args) {

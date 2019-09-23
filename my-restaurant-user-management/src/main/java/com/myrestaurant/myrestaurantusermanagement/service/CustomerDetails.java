@@ -1,7 +1,5 @@
 package com.myrestaurant.myrestaurantusermanagement.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.myrestaurant.myrestaurantusermanagement.entity.Customer;
 
 

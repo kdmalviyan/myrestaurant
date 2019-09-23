@@ -1,6 +1,6 @@
 package com.myrestaurant.myrestaurantusermanagement.dto;
 
-public class CustomerAccountDTO {
+public class CustomerAccountDTO{
 
 	private String firstName;
 
