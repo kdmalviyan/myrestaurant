@@ -23,12 +23,17 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-
-  }
-
-
+  ngOnInit() {}
+  
   register() {
-    console.log(JSON.stringify(this.registerForm.value));
+    console.log();
+    this.authService.register(this.registerForm.value).pipe()
+      .subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      });
   }
 }

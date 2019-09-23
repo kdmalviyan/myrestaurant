@@ -54,8 +54,11 @@ export class AuthService {
     sessionStorage.removeItem('username');
   }
 
-  register(user) {
-    return this.httpClient.post<any>('http://localhost:8081/user/customer', user).pipe(
+  register(user : string) {
+    const endpoint = environment.baseUrl + constants.register;  
+    console.log(endpoint)
+    console.log(user) 
+    return this.httpClient.post<any>(endpoint, JSON.parse(user)).pipe(
       map(
         userData => {
           return userData;
@@ -63,4 +66,16 @@ export class AuthService {
       )
     );
   }
+  
+  callHello() {
+    const endpoint = environment.baseUrl + constants.sayHello;     
+    return this.httpClient.get<any>(endpoint).pipe(
+      map(
+        userData => {
+          return userData;
+        }
+      )
+    );
+  }
+
 }

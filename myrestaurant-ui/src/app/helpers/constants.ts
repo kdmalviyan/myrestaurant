@@ -1,3 +1,5 @@
 export const constants = {
-    login: 'authenticate'
+    login: 'authenticate',
+    register: 'user/customer',
+    sayHello: 'user/customer/hello'
 };
