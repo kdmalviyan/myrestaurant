@@ -54,20 +54,13 @@ export class AuthService {
     sessionStorage.removeItem('username');
   }
 
-  register(fisrtName: string, lastName: string, email: string, phone: string, username: string, password: string) {
-    return this.httpClient.post<any>('http://localhost:8081/user/customer', {
-      'firstName': 'Manoj',
-      'lastName': 'singh',
-      'username': 'Manoj',
-      'password': 'manoj',
-      'email': 'manojsinghgmailcom',
-      'phone': '9786758858'
-    }).pipe(
+  register(user) {
+    return this.httpClient.post<any>('http://localhost:8081/user/customer', user).pipe(
       map(
         userData => {
           return userData;
         }
       )
-      );
+    );
   }
 }
