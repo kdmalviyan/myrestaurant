@@ -29,7 +29,7 @@ import { TokenInterceptor } from './inerceptors/token.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-      }
+    }
   ],
   bootstrap: [AppComponent]
 })

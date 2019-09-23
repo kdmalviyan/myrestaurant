@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
- 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,14 +17,9 @@ export class HomeComponent implements OnInit {
 
   sayHello() {
     console.log();
-    this.authService.callHello().pipe()
-      .subscribe(
-      data => {
-       alert(data)
-      },
-      error => {
-        console.log(error);
-      });
+    this.authService.callHello().subscribe(res => {
+      alert(res);
+    });
   }
 
 }

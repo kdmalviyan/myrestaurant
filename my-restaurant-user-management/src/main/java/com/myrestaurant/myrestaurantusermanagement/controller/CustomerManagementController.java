@@ -57,9 +57,9 @@ public class CustomerManagementController {
 			return new ResponseEntity<Object>("Deleted", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@RequestMapping({ "/hello" })
-	public String firstPage() {
-		return "Hello World";
+	@GetMapping(value = "hello")
+	public ResponseEntity<Object> firstPage() {
+		return new ResponseEntity<>("Hello There", HttpStatus.OK);
 	}
 
 }

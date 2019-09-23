@@ -48,17 +48,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(HttpSecurity httpSecurity) throws Exception {
-
-		httpSecurity.csrf().disable()
-
-		.authorizeRequests().antMatchers("/authenticate", "/user/customer").permitAll().
-
-				anyRequest().authenticated().and().
-
-				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	protected void configure(HttpSecurity http) throws Exception {
+		/*http.cors().and().csrf().disable().authorizeRequests().antMatchers(excludeUrlList.toArray(new String[0]))
+		.permitAll().anyRequest().authenticated().and().exceptionHandling()
+		.authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
+		
+		http.cors().and().csrf().disable()
+		.authorizeRequests()
+		.antMatchers("/authenticate", "/user/customer")
+		.permitAll()
+		.anyRequest()
+		.authenticated()
+		.and()
+		.exceptionHandling()
+		.authenticationEntryPoint(jwtAuthenticationEntryPoint)
+		.and()
+		.sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }
