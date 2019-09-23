@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { RequiredValidator } from '@angular/forms/src/directives/validators';
 
 @Component({
   selector: 'app-register',
@@ -10,29 +11,24 @@ import { first } from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  username: string;
-  password: string;
 
+  constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+    this.registerForm = formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: [''],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
-  constructor(private authService: AuthService,  private formBuilder: FormBuilder) { }
+  ngOnInit() {
 
-  ngOnInit() {    
-      this.firstName ="";
-      this.lastName="";
-      this.email="";
-      this.phone="";
-      this. username = "";
-      this. password="";    
   }
 
 
-  onSubmit() {
-    console.log("dsfsdf"+this.firstName)
-    return this.firstName;
-
+  register() {
+    console.log(JSON.stringify(this.registerForm.value));
   }
 }

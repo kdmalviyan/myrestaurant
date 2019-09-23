@@ -13,38 +13,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myrestaurant.myrestaurantusermanagement.dto.CustomerAccountDTO;
 import com.myrestaurant.myrestaurantusermanagement.entity.Customer;
-import com.myrestaurant.myrestaurantusermanagement.service.CustomerDetailsServiceImpl;
+import com.myrestaurant.myrestaurantusermanagement.service.CustomerDetails;
 import com.myrestaurant.myrestaurantusermanagement.util.BeanUtility;
 
 @RestController
 @RequestMapping(value = "/user/customer")
 public class CustomerManagementController {
-	
-	
+
 	@Autowired
-	CustomerDetailsServiceImpl CustomerDetails;
-	
+	CustomerDetails customerDetails;
+
 	@PostMapping("")
 	public ResponseEntity<Object> createCustomer(@RequestBody CustomerAccountDTO customerAccountDTO) {
 		Customer customer = new Customer();
 		BeanUtility.copyProperties(customerAccountDTO, customer);
-		return ResponseEntity.ok(CustomerDetails.save(customer));
+		return ResponseEntity.ok(customerDetails.save(customer));
 	}
-	
+
 	@GetMapping("")
 	public Customer getCustomer(@RequestBody CustomerAccountDTO customerAccountDTO) {
 		Customer customer = new Customer();
 		BeanUtility.copyProperties(customerAccountDTO, customer);
-		return CustomerDetails.loadUserByUsername(customer);
+		return customerDetails.loadUserByUsername(customer);
 	}
 
 	@PutMapping("")
 	public ResponseEntity<Object> updateCustomer(@RequestBody CustomerAccountDTO customerAccountDTO) {
 		Customer customer = new Customer();
 		BeanUtility.copyProperties(customerAccountDTO, customer);
-		if(CustomerDetails.updateCustomerByUsername(customer)) {
+		if (customerDetails.updateCustomerByUsername(customer)) {
 			return new ResponseEntity<Object>("Updated", HttpStatus.OK);
-		}else
+		} else
 			return new ResponseEntity<Object>("Updated", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
@@ -52,15 +51,15 @@ public class CustomerManagementController {
 	public ResponseEntity<Object> deleteCustomer(@RequestBody CustomerAccountDTO customerAccountDTO) {
 		Customer customer = new Customer();
 		BeanUtility.copyProperties(customerAccountDTO, customer);
-		if(CustomerDetails.delete(customer)) {
+		if (customerDetails.delete(customer)) {
 			return new ResponseEntity<Object>("Deleted", HttpStatus.OK);
-		}else
+		} else
 			return new ResponseEntity<Object>("Deleted", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
+
 	@RequestMapping({ "/hello" })
 	public String firstPage() {
-	return "Hello World";
+		return "Hello World";
 	}
-	
+
 }

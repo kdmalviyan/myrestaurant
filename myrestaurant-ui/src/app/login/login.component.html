@@ -1,11 +1,11 @@
 <div>
   <div>
     <label for="username">Username</label>
-    <input name="username" />
+    <input name="username" [(ngModel)]="username" />
   </div>
   <div>
     <label for="password">Password</label>
-    <input name="password" />
+    <input name="password" [(ngModel)]="password" />
   </div>
   <button (click)="login()">Login</button>
 </div>

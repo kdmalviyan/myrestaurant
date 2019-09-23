@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { constants } from '../helpers/constants';
 
-
-export class User{
+export class User {
   constructor(
-    public status:string,
-     ) {}
+    public status: string,
+  ) { }
 }
 
-export class JwtResponse{
+export class JwtResponse {
   constructor(
-    public jwttoken:string,
-     ) {}
+    public jwttoken: string,
+  ) { }
 }
 
 @Injectable({
@@ -23,43 +24,50 @@ export class JwtResponse{
 export class AuthService {
 
   constructor(
-    private httpClient:HttpClient
-  ) { 
-     }
-     login(username: string, password: string) {      
-      return this.httpClient.post<any>('http://localhost:8081/authenticate',{"username":"Manoj","password":"manoj"}).pipe(
-       map(
-         userData => {          
-          sessionStorage.setItem('username',username);
-          let tokenStr= 'Bearer '+userData.token;
-          sessionStorage.setItem('token', tokenStr);          
+    private httpClient: HttpClient
+  ) {
+  }
+  login(usr: string, pwd: string) {
+    const endpoint = environment.baseUrl + constants.login;
+    return this.httpClient.post<any>(endpoint,
+      {
+        'username': usr,
+        'password': pwd
+      }
+    ).pipe(
+      map(
+        userData => {
+          sessionStorage.setItem('username', usr);
+          const tokenStr = 'Bearer ' + userData.token;
+          sessionStorage.setItem('token', tokenStr);
           return userData;
-         }
-       )
+        }
+      )
       );
-    }
+  }
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('username')
-    //console.log(!(user === null))
-    return !(user === null)
+    const user = sessionStorage.getItem('username');
+    // console.log(!(user === null))
+    return !(user === null);
   }
   logOut() {
-    sessionStorage.removeItem('username')
-  }  
-
-  register(fisrtName: string , lastName: string , email: string , phone : string, username: string, password: string) {      
-    return this.httpClient.post<any>('http://localhost:8081/user/customer',{"firstName":"Manoj",
-    "lastName":"singh",
-    "username":"Manoj",
-    "password":"manoj",
-    "email":"manojsinghgmailcom",
-    "phone":"9786758858"}).pipe(
-     map(
-       userData => {
-        return userData;
-       }
-     )
-    );
+    sessionStorage.removeItem('username');
   }
-  
+
+  register(fisrtName: string, lastName: string, email: string, phone: string, username: string, password: string) {
+    return this.httpClient.post<any>('http://localhost:8081/user/customer', {
+      'firstName': 'Manoj',
+      'lastName': 'singh',
+      'username': 'Manoj',
+      'password': 'manoj',
+      'email': 'manojsinghgmailcom',
+      'phone': '9786758858'
+    }).pipe(
+      map(
+        userData => {
+          return userData;
+        }
+      )
+      );
+  }
 }

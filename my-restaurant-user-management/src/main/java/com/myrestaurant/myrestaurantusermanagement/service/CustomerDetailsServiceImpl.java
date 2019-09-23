@@ -9,33 +9,33 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myrestaurant.myrestaurantusermanagement.entity.Customer;
 import com.myrestaurant.myrestaurantusermanagement.repository.CustomerRepository;
 
-
 @Service("CustomerDetails")
 @Transactional
 public class CustomerDetailsServiceImpl implements CustomerDetails {
 
 	@Autowired
 	CustomerRepository customerRepository;
-	
+
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
-	
-	public Customer save(Customer user) {		
+
+	@Override
+	public Customer save(Customer user) {
 		user.setPassword(bcryptEncoder.encode(user.getPassword()));
 		return customerRepository.save(user);
-	}	
+	}
 
 	@Override
 	public Customer loadUserByUsername(Customer customer) {
-		Customer customerDetails= customerRepository.findByUsername(customer.getUsername());
+		Customer customerDetails = customerRepository.findByUsername(customer.getUsername());
 		if (customerDetails == null) {
 			throw new UsernameNotFoundException("User not found with username: " + customer);
-		}		
+		}
 		return customerDetails;
 	}
 
 	@Override
-	public boolean  updateCustomerByUsername(Customer customer) {
+	public boolean updateCustomerByUsername(Customer customer) {
 		/*
 		 * Customer customerDetails=
 		 * customerRepository.findByUsername(customer.getUsername()); if
@@ -48,12 +48,12 @@ public class CustomerDetailsServiceImpl implements CustomerDetails {
 
 	@Override
 	public boolean delete(Customer customer) {
-			
+
 		long id = customerRepository.findByUsername(customer.getUsername()).getId();
-		
-		 customerRepository.deleteById(id);	
-		 
-		 return true;
+
+		customerRepository.deleteById(id);
+
+		return true;
 	}
-	
+
 }
