@@ -33,7 +33,7 @@ public class CustomerManagement {
 				  .decoder(new GsonDecoder())
 				  .logger(new Slf4jLogger(CustomerFeignClient.class))
 				  .logLevel(Logger.Level.FULL)
-				  .target(CustomerFeignClient.class, "http://localhost:8081/user/create");
+				  .target(CustomerFeignClient.class, "http://localhost:8081/user/customer");
 		CustomerResponse customerResponse = customerClient.create(customerAccountDTO);
 		return new ResponseEntity<Object>(customerResponse, HttpStatus.OK);
 	}

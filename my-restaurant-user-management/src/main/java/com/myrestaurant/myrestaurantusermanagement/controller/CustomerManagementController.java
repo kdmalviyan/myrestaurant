@@ -2,6 +2,7 @@ package com.myrestaurant.myrestaurantusermanagement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,9 +58,10 @@ public class CustomerManagementController {
 			return new ResponseEntity<Object>("Deleted", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@GetMapping(value = "hello")
-	public ResponseEntity<Object> firstPage() {
-		return new ResponseEntity<>("Hello There", HttpStatus.OK);
+	@GetMapping(value = "hello")	
+	public ResponseEntity<String> firstPage() {
+		 return ResponseEntity
+		            .ok().body("hello");
 	}
 
 }
