@@ -1,0 +1,5 @@
+/.metadata/
+/RemoteSystemsTempFiles/.project
+/discovery-server/.mvn/wrapper/*.jar
+RemoteSystemsTempFiles
+.recommenders

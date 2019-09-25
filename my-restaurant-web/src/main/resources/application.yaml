@@ -1,0 +1,9 @@
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    statusPageUrlPath: ${server.servletPath}/info
+    healthCheckUrlPath: ${server.servletPath}/health
