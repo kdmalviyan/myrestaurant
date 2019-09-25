@@ -1,8 +1,8 @@
 spring:
   application:
-    name: restaurant-api-gateway-zuul
+    name: my-restaurant-web-service
 server:
-  port: 8080
+  port: 8084
 eureka:
   client:
     serviceUrl:
