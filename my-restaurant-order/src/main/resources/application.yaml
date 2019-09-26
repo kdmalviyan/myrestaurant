@@ -1,6 +1,6 @@
 spring:
   application:
-    name: my-restaurant-web-service
+    name: order-management-service
 server:
   port: 8084
 eureka:

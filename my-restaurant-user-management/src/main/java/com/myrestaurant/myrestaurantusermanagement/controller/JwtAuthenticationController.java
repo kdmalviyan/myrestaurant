@@ -18,6 +18,7 @@ import com.myrestaurant.myrestaurantusermanagement.entity.JwtResponse;
 import com.myrestaurant.myrestaurantusermanagement.service.JwtUserDetailsService;
 
 @RestController
+@RequestMapping(value = "/user")
 public class JwtAuthenticationController {
 
 	@Autowired

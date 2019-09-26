@@ -1,6 +1,6 @@
 spring:
   application:
-    name: my-restaurant-web-service
+    name: user-management-service
 server:
   port: 8086
 eureka:
