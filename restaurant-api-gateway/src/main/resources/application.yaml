@@ -3,6 +3,9 @@ spring:
     name: restaurant-api-gateway-zuul
 server:
   port: 8080
+ribbon:
+  eureka:
+    enabled: true  
 eureka:
   client:
     registerWithEureka: true
@@ -16,6 +19,3 @@ zuul:
       user-management-service:
          path: /user/**
          serviceId: user-management-service
-      order-management-service:
-         path: /order/**
-         url: http://localhost:8084/order
