@@ -1,11 +1,11 @@
 spring:
-  application:
-    name: user-management-service
+   application:
+      name: user-management-service
 server:
-  port: 8086
+   port: 8086
 eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
+   client:
+      serviceUrl:
+         defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+   instance:
+      preferIpAddress: true

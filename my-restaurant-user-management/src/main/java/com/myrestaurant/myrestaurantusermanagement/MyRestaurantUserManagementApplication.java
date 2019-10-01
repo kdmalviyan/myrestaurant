@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = "com.myrestaurant.*")
 @EnableEurekaClient
+
 public class MyRestaurantUserManagementApplication {
 
 	public static void main(String[] args) {
