@@ -13,6 +13,9 @@ eureka:
     preferIpAddress: true
 zuul:
    routes:
+      payment-management-service:
+         path: /payment/**
+         serviceId: payment
       user-management-service:
          path: /user/**
          serviceId: user-management-service
