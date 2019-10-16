@@ -12,4 +12,8 @@ public interface CustomerDetails {
 
 	Customer save(Customer customer);
 
+	Customer findById(Long customerId);
+
+	Iterable<Customer> findAll();
+
 }

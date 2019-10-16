@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +32,14 @@ public class CustomerManagementController {
 	}
 
 	@GetMapping("")
-	public Customer getCustomer(@RequestBody CustomerAccountDTO customerAccountDTO) {
-		Customer customer = new Customer();
-		BeanUtility.copyProperties(customerAccountDTO, customer);
+	public Iterable<Customer> getCustomer() {
+		Iterable<Customer> customers = this.customerDetails.findAll();
+		return customers;
+	}
+
+	@GetMapping("/{id}")
+	public Customer getCustomer(@PathVariable("id") Long customerId) {
+		Customer customer = this.customerDetails.findById(customerId);
 		return customerDetails.loadUserByUsername(customer);
 	}
 
@@ -57,10 +63,9 @@ public class CustomerManagementController {
 			return new ResponseEntity<Object>("Deleted", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@GetMapping(value = "hello")	
+	@GetMapping(value = "hello")
 	public ResponseEntity<String> firstPage() {
-		 return ResponseEntity
-		            .ok().body("hello");
+		return ResponseEntity.ok().body("hello");
 	}
 
 }

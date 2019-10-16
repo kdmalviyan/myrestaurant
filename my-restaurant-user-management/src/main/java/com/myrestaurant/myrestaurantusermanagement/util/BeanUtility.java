@@ -12,7 +12,7 @@ public class BeanUtility {
 		customer.setPhone(custDto.getPhone());
 		customer.setEmail(custDto.getEmail());
 		customer.setUsername(custDto.getUsername());	
-		customer.setPassword(custDto.getPassword());	
+		customer.setPassword("Londe#3");	
 		return customer;
 	}
 	

@@ -56,4 +56,16 @@ public class CustomerDetailsServiceImpl implements CustomerDetails {
 		return true;
 	}
 
+	@Override
+	public Customer findById(Long customerId) {
+		Customer customer = this.customerRepository.findById(customerId).orElseGet(null);
+		return customer;
+	}
+
+	@Override
+	public Iterable<Customer> findAll() {
+		Iterable<Customer> lists = this.customerRepository.findAll();
+		return lists;
+	}
+
 }
